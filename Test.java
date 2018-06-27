@@ -32,7 +32,7 @@ public static void NW(String f1, String f2) {
                     seq2[i] = j;
             }
         }
-        int gap = -2;                              
+        int gap = 2;                              
         int match, delete, insert;
         int[][] F = new int[f1.length()+1][f2.length()+1];
         for (j = 0; j <= f2.length(); j++) {
@@ -47,9 +47,9 @@ public static void NW(String f1, String f2) {
             	
                 delete = F[i - 1][j] + gap;
                 insert = F[i][j - 1] + gap;
-                if ((match > delete) && (match > insert)) {
+                if ((match < delete) && (match < insert)) {
                     F[i][j] = match;
-                } else if (delete > insert) {
+                } else if (delete < insert) {
                     F[i][j] = delete;
                 } else {
                     F[i][j] = insert;
@@ -65,12 +65,12 @@ public static void NW(String f1, String f2) {
             int ScoreDiag = F[i-1][j-1];     
             int ScoreLeft = F[i - 1][j];
             int ScoreUp = F[i][j-1];
-            if ((ScoreDiag > ScoreLeft) && (ScoreDiag > ScoreUp)) {
+            if ((ScoreDiag < ScoreLeft) && (ScoreDiag < ScoreUp)) {
                 Alignmentf1 = f1.charAt(i-1) + Alignmentf1;
                 Alignmentf2 = f2.charAt(j-1) + Alignmentf2;
                 i = i - 1;
                 j = j - 1;
-            } else if (ScoreLeft > ScoreUp) {
+            } else if (ScoreLeft < ScoreUp) {
             	Alignmentf1 = f1.charAt(i-1) + Alignmentf1;
                 Alignmentf2 = "-" + Alignmentf2;
                 i = i - 1;
@@ -105,9 +105,9 @@ public static void NW(String f1, String f2) {
 	public static int comp(int a,int b)
 	{
 		if(a==b)
-			return 1;
-		else
 			return 0;
+		else
+			return 1;
 	}
 
 
