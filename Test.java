@@ -9,7 +9,7 @@ public class Test {
 	
 	public static void main(String[] args) {
 	
-		NW("CTA","TAAC");
+		NW("AGC","AAAC");
 	}
 
 public static void NW(String f1, String f2) {      
@@ -65,12 +65,12 @@ public static void NW(String f1, String f2) {
             int ScoreDiag = F[i-1][j-1];     
             int ScoreLeft = F[i - 1][j];
             int ScoreUp = F[i][j-1];
-            if ((ScoreDiag < ScoreLeft) && (ScoreDiag < ScoreUp)) {
+            if (Score == (ScoreDiag + comp(seq1[i-1],seq2[j-1]))) {
                 Alignmentf1 = f1.charAt(i-1) + Alignmentf1;
                 Alignmentf2 = f2.charAt(j-1) + Alignmentf2;
                 i = i - 1;
                 j = j - 1;
-            } else if (ScoreLeft < ScoreUp) {
+            } else if (Score == ScoreLeft + gap) {
             	Alignmentf1 = f1.charAt(i-1) + Alignmentf1;
                 Alignmentf2 = "-" + Alignmentf2;
                 i = i - 1;
